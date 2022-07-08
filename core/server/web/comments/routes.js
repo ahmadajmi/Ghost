@@ -13,7 +13,7 @@ module.exports = function apiRoutes() {
     // Global handling for member session, ensures a member is logged in to the frontend
     router.use(membersService.middleware.loadMemberSession);
 
-    router.get('/counts', http(api.commentsComments.counts));
+    router.post('/counts', http(api.commentsComments.counts));
 
     router.get('/', http(api.commentsComments.browse));
     router.get('/:id', http(api.commentsComments.read));
