@@ -53,12 +53,17 @@ const Comment = ghostBookshelf.Model.extend({
             this.set('html', sanitizeHtml(this.get('html'), {
                 allowedTags: ['p', 'br', 'a'],
                 allowedAttributes: {
-                    a: ['href', 'target', 'rel']
+                    a: ['href', 'target', 'rel', 'class']
                 },
                 selfClosing: ['br'],
                 // Enforce _blank and safe URLs
                 transformTags: {
-                    a: sanitizeHtml.simpleTransform('a', {target: '_blank', rel: 'ugc noopener noreferrer nofollow'}),
+                    a: sanitizeHtml.simpleTransform('a', {
+                        target: '_blank', 
+                        rel: 'ugc noopener noreferrer nofollow',
+                        // todo: needs to be in sync with the frontend
+                        class: 'underline'
+                    })
                 }
             }));
         }
